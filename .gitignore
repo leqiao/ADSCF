@@ -5,3 +5,4 @@ Data
 *.out
 .nfs000*
 *.o
+*.swp

@@ -1,0 +1,21 @@
+1.d0		sizex  
+1.d0		sizey  
+10.d0		sizez  ! input from inline argument
+0.4d0		phibar	! dimensionless polymer concentration
+5000        segments !segments used for polymer contour length 
+0           ds_scheme ! 0=Uniform 1= Half-Cosine 2=Quarter-Cosine
+500         itermax_scf !Max iterations
+1.0d-6      accuracy_scf !Accuracy 
+2           mixing_type ! 1=Simple mixing 2=Lambda Mixing 3=Anderson-mixing
+0.05d0       lambda !Mixing field parameter 
+1           int_scheme ! integration technique 0 rectangle (only for uniform mesh), 1 trapzoidal
+3           mesh_type ! 0 for uniform, 1 for cos adaptive , 2  triangle
+0           delta_rep ! 0 point-like 1 Gaussian-like 2 free 
+0.05d0      gra_pt !Grafting distance from wall 
+0.005d0     eps ! uniform deltaz near the walls for mesh 2 and 3
+10         eps0 ! Amount of constant dz points near the wall in meshgrid 2 and 3
+0d0           LambdaA !Interaction parameter
+0.2d0         delta_z !Interaction distance
+0           wall_scheme ! 0= only left 1= only 2=both
+-1           qread ! 1=read cnf_densities.in -1= create from program
+10          every_out !Output densities every so iterations
