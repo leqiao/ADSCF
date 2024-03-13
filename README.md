@@ -20,7 +20,7 @@ films and brushs using adaptive discretizations. Polymers, 2023xxxxxxxx (submitt
 
 
 # Files and directories
-The structure of the script:\
+### The structure of the code package:\
 Using the 3D code of polymer in bulk as an example:
 ```bash
 ├── Bulk_3D_FFT
