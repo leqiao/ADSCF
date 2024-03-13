@@ -21,7 +21,7 @@ films and brushs using adaptive discretizations. Polymers, 2023xxxxxxxx (submitt
 
 # Files and directories
 The structure of the script:\
-Using the 3D code of polymer in bulk as an exmaple:
+Using the 3D code of polymer in bulk as an example:
 ```bash
 ├── Bulk_3D_FFT
 │   ├── General_Routines
@@ -51,13 +51,13 @@ Using the 3D code of polymer in bulk as an exmaple:
 │       ├── mod_solvent.f90
 │       └── mod_triblock.f90
 ```
-## Exmaples with adaptive schemes:
+## Examples with adaptive schemes:
 Film_CK_AD: Block copolymer confined in a thin film solved by Crank–Nicolson method using adaptive spatial discretization. The examples are given in 1D and 3D. 
 
 Brush_CK_AD: homopolymer brush solved by Crank–Nicolson method using adaptive spatial and contour discretization.   
 
 # Making and running job
-Using the 3D code of polymer in bulk as an exmaple: 
+Using the 3D code of polymer in bulk as an example: 
 ```bash
 cd Main_Diblock_Melt
 make main_diblock_melt  
