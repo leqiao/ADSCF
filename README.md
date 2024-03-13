@@ -51,7 +51,7 @@ Using the 3D code of polymer in bulk as an example:
 │       ├── mod_solvent.f90
 │       └── mod_triblock.f90
 ```
-## Examples using adaptive schemes:
+### Examples using adaptive schemes:
 Film_CK_AD: Block copolymer confined in a thin film solved by Crank–Nicolson method using adaptive spatial discretization. The examples are given in 1D and 3D. 
 
 Brush_CK_AD: homopolymer brush solved by Crank–Nicolson method using adaptive spatial and contour discretization.   
