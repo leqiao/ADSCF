@@ -1,0 +1,7 @@
+*.dat
+Data
+*.exe
+*.DS_Store
+*.out
+.nfs000*
+*.o

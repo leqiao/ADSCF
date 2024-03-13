@@ -1,0 +1,11 @@
+3.7d0		sizex  
+6.4d0		sizey  
+10.d0		sizez  ! input from inline argument
+1.0d0		C	
+2.25d0	 	mu_scf 	! former 26.92245d0
+0.0006d0     ds 		
+500000      itermax_scf
+1.0d-10      accuracy_scf
+0.2d0       lambda
+1           int_scheme ! 0 rectangle (only for uniform mesh), 1 trapzoidal
+1           mesh_type ! 0 for uniform, 1 for cos  adaptive, 2 for step adaptive

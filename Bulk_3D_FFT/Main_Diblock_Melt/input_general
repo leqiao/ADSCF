@@ -1,0 +1,13 @@
+3.6d0		sizex
+1.d0		sizey
+3.6d0		sizez
+
+1.0d0		C	
+2.5d0	 	mu_scf 	! former 26.92245d0
+
+0.001d0	ds 		
+
+100000		itermax_scf
+1.0d-12		accuracy_scf
+
+0.1d0		lambda
