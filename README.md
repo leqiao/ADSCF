@@ -39,7 +39,13 @@ Using the 3D code of polymer in bulk as an exmaple:
 │   │   ├── main_diblock_melt.f90
 │   │   ├── Makefile
 │   │   └── mod_global.f90
-│   └── Polymer_Modules # Defining types of polymer
+│   ├── Main_Blend # blend of A and B homopolymers
+│   │   ├── input_general
+│   │   ├── input_interactions
+│   │   ├── main_blend.f90
+│   │   ├── Makefile
+│   │   └── mod_global.f90
+│   └── Polymer_Modules # Defining the type of polymer
 │       ├── mod_diblock.f90
 │       ├── mod_homopolymer.f90
 │       ├── mod_solvent.f90
