@@ -90,13 +90,13 @@ contains
   subroutine Propagate_Homopolymer(polymer,expfield)
 !
     type(homopolymer), intent(inout)  :: polymer
-    double precision, dimension(gridx,gridy,gridz), intent(in)  :: expfield
+    double precision, dimension(gridx,gridy,gridz,monomer_types), intent(in)  :: expfield
 
     double precision, dimension(:,:,:,:), allocatable :: qq
     double precision, dimension(gridx,gridy,gridz)    :: prop
 !
     integer :: iAllocStatus
-    integer :: s,mono
+    integer :: s,mono,monomer_type
 !
     allocate(qq(gridx,gridy,gridz,0:polymer%segments),stat=iAllocStatus)
 !
@@ -105,7 +105,8 @@ contains
     qq(:,:,:,s)=prop
 !
     do s=1,polymer%segments
-       call Propagate_Step(prop,expfield)
+       monomer_type = polymer%monomer_type
+       call Propagate_Step(prop,expfield(:,:,:,monomer_type))
        qq(:,:,:,s)=prop
     end do
 !
