@@ -8,6 +8,12 @@
 !          SCF CALCULATION OR
 !          DYNAMIC DENSITY FUNCTIONAL CALCULATION WITH IMPOSED MOBILITY MATRIX
 !
+!          References (for DDFT): 
+!              S. Mantha, S. Qi, F. Schmid, Macromolecules 53, 3409 (2020)
+!                 doi:10.1021/acs.macromol.0c00130
+!              F. Schmid, B. Li, Polymers 12, 2205 (2020)
+!                 doi:10.3390/polym12102205
+!
 !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !
 program main_multiblock
