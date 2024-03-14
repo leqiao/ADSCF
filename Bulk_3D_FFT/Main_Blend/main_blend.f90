@@ -2,7 +2,13 @@
 !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !
 !	    MAIN PROGRAM (AB HOMOPOLYMER BLEND)
-!           EXTERNAL POTENTIAL DYNAMICS SIMULATION
+!          
+!           DYNAMIC DENSITY FUNCTIONAL CALCULATION
+!               - CHAIN DYNAMICS OR EXTERNAL POTENTIAL DYNAMICS  
+!           SCF CALCULATION
+!
+!           Reference (chain dynamics): Qi, Schmid, Macromolecules 50, 9831 (2017)
+!                https://doi.org/10.1021/acs.macromol.7b02017
 !
 !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !
@@ -178,12 +184,12 @@ program main_blend
 !
   if (qepd) then
 
-    write(30,*) 'BEGIN EPD SIMULATION'
+    write(30,*) 'BEGIN DYNAMIC SCF SIMULATION'
     write(30,*) 
 
     do step = 1,number_of_timesteps
 
-       call EPD_Modified_Timestep_Euler(field,density,timestep)
+       call Chain_Dynamics_Timestep_Euler(field,density,timestep)
 !      call EPD_Timestep_Euler(field,timestep)
 !      call EPD_Timestep_RungeKutta(field,timestep)
 !
@@ -596,7 +602,7 @@ contains
 !
 !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !
-  subroutine EPD_Modified_Timestep_Euler (field,density,timestep)
+  subroutine Chain_Dynamics_Timestep_Euler (field,density,timestep)
 !
    use Fourier_fftw3
 
@@ -658,7 +664,7 @@ contains
 
     return
 
-  end subroutine EPD_Modified_Timestep_Euler
+  end subroutine Chain_Dynamics_Timestep_Euler
 !
 !ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !
