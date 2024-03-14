@@ -25,7 +25,7 @@ Using the 3D code of polymer in bulk as an example:
 ```bash
 ├── Bulk_3D_FFT
 │   ├── General_Routines
-│   ├── Geometry_Modules # Numerical method used to solve the diffusion equation, in this emaple FFT is used. 
+│   ├── Geometry_Modules # Numerical methods used to solve the diffusion equation, in this example FFT is used. 
 │   │   └── Bulk
 │   │       ├── fftw3.f
 │   │       └── mod_fourier.f90
