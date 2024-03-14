@@ -1,5 +1,5 @@
 # ADSCF
-ADSCF is a Self-Consistent Field code package designed for calculating the equilibrium properties of block copolymer materials, encompassing block copolymers in melt/solution and grafted polymer brushes in 1-3D. Developed using Fortran90, the code utilizes a pseudo-spectral method based on Fast Fourier transformation (FFT) for bulk calculations with periodic boundary conditions. Additionally, real-space methods, specifically the Finite Difference method (Crank–Nicolson), are employed for polymer systems with sharp interfaces, such as those found in thin films and end-grafted polymers. Notably, we implement an adaptive scheme for spatial and contour discretization in thin film and brush calculations to minimize numerical errors. For further details, please refer to our publication.
+ADSCF is a Self-Consistent Field code package designed for calculating the equilibrium properties of block copolymer materials, encompassing block copolymers in melt/solution and grafted polymer brushes in 1-3D. Developed using Fortran90, the code utilizes a pseudo-spectral method based on Fast Fourier transformation (FFT) for bulk calculations with periodic boundary conditions, and also provides the possibility to perform dynamic SCF calculations using chain dynamics, external potential dynamics, or a prescribed mobility function. Additionally, real-space methods, specifically the Finite Difference method (Crank–Nicolson), are employed for polymer systems with sharp interfaces, such as those found in thin films and end-grafted polymers. Notably, we implement an adaptive scheme for spatial and contour discretization in thin film and brush calculations to minimize numerical errors. For further details, please refer to our publication.
 
 # License 
 
@@ -7,7 +7,7 @@ Copyright (C) 2024
 Le Qiao (<le.qiao@uni-mainz.de>)  
 Marios Giannakou (<mgiannak@uni-mainz.de>)  
 Friederike Schmid (<friederike.schmid@uni-mainz.de>)  
-Johannes Gutenberg-Universität Mainz, Institue of Physics, Schmid group  
+Johannes Gutenberg-Universität Mainz, Institute of Physics, Schmid group  
 
 ADSCF is an open-source code package provided free of charge: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation. The GNU General Public License is available at <https://www.gnu.org/licenses/>.
 
@@ -39,10 +39,17 @@ Using the 3D code of polymer in bulk as an example:
 │   │   ├── main_diblock_melt.f90
 │   │   ├── Makefile
 │   │   └── mod_global.f90
-│   ├── Main_Blend # blend of A and B homopolymers
+│   ├── Main_Blend # blend of A and B homopolymers, SCF and DDFT simulations (chain dynamics or external potential dynamics)
 │   │   ├── input_general
 │   │   ├── input_interactions
 │   │   ├── main_blend.f90
+│   │   ├── Makefile
+│   │   └── mod_global.f90
+│   ├── Main_Multiblock # blend of multiblock copolymers, SCF and DDFT simulations (using mobility matrix function as input)
+│   │   ├── input_general
+│   │   ├── input_interactions
+│   │   ├── input_mobilities
+│   │   ├── main_multiblock.f90
 │   │   ├── Makefile
 │   │   └── mod_global.f90
 │   └── Polymer_Modules # Defining the type of polymer
@@ -50,6 +57,7 @@ Using the 3D code of polymer in bulk as an example:
 │       ├── mod_homopolymer.f90
 │       ├── mod_solvent.f90
 │       └── mod_triblock.f90
+│       └── mod_multiblock.f90
 ```
 ### Examples using adaptive schemes:
 + Film_CK_AD: Block copolymer confined in a thin film solved by Crank–Nicolson method using adaptive spatial discretization. The examples are given in 1D and 3D. 
