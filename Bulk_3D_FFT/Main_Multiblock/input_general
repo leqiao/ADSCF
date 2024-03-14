@@ -1,0 +1,19 @@
+17.2d0		sizex
+1.0d0		sizey
+1.0d0		sizez
+
+1.0d0		C	    ! Reduced in case of thin film in z direction
+5.65d0 		mu_scf 	
+
+0.01d0		ds 		
+
+0.          start_time
+6	        number_of_timesteps
+0.00005		timestep
+
+.false.		qread  ! qread = .true. : read from file cnf.in
+3           qinit  ! 1=cosine, 2=random densities, 3=random fields
+.true.      qddft  ! qddft = .true. : DDFT simulation; otherweise SCF calculation
+
+10.          upper omega cutoff for DDFT calculations
+
