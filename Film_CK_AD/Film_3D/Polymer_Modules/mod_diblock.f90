@@ -107,12 +107,12 @@ contains
     implicit none
 
     type(diblock_copolymer), intent(inout)  :: copolymer
-    double precision, dimension(gridx,gridy,0:gridz,block_number), intent(in) :: field
+    double precision, dimension(gridx,gridy,0:gridz,monomer_types), intent(in) :: field
 
     double precision, dimension(:,:,:,:), allocatable   :: qq, qqdag
     double precision, dimension(gridx,gridy,0:gridz)      :: prop
     integer :: iAllocStatus
-    integer :: s,s0,mono,block,x,y,z,i
+    integer :: s,s0,mono,block,x,y,z,i, monomer_type
     double precision :: total_rho
 !
    allocate(qq(gridx,gridy,0:gridz,0:copolymer%segments),stat=iAllocStatus)
@@ -122,8 +122,9 @@ contains
     prop=1.0d0
     qq(:,:,:,s0)=prop
     do block = 1,block_number
+      monomer_type = copolymer%monomer_type(block)
       do s = s0+1, s0+copolymer%block_segments(block)
-         call Propagate_Step(prop,field (:,:,:,block))
+         call Propagate_Step(prop,field (:,:,:,monomer_type))
          qq(:,:,:,s)=prop
       end do
       s0 = s0 + copolymer%block_segments(block)
@@ -133,8 +134,9 @@ contains
     prop=1.0d0
     qqdag(:,:,:,s0)=prop
     do block = block_number,1,-1
+      monomer_type = copolymer%monomer_type(block)
       do s=s0+1,s0+copolymer%block_segments(block)
-         call Propagate_Step(prop,field (:,:,:,block))
+         call Propagate_Step(prop,field (:,:,:,monomer_type))
          qqdag(:,:,:,s)=prop
       end do
       s0 = s0 + copolymer%block_segments(block)
