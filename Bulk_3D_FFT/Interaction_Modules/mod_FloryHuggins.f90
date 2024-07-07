@@ -23,7 +23,6 @@ module Interactions_FloryHuggins
 !
   public :: Initialize_Interactions
   public :: Calculate_Mean_Fields
-  public :: Calculate_Mean_Ext_Fields
   public :: Interaction_Energy
   public :: Check_Volume_Fraction
 !
@@ -62,6 +61,8 @@ contains
       print*, 'Error', io_error, ' while trying to open', file_name 
     end if
 !
+    close(unit=20)
+!
   end subroutine Initialize_Interactions
 !
 !cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
@@ -91,7 +92,6 @@ contains
           * dvol*sum(volume_fraction(:,:,:,component)*volume_fraction(:,:,:,component2))
       end do
     end do
-     print*, 'IE=', interaction_energy
  
   end function Interaction_Energy
 !
