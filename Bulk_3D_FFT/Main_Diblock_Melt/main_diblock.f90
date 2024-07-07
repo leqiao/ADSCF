@@ -51,7 +51,7 @@ program main_diblock_melt
   double precision, dimension(gridx,gridy,gridz,monomer_types) :: saddledensity
   double precision, dimension(gridx,gridy,gridz,monomer_types) :: saddlefield
 !  double precision :: interaction_energy
-  double precision          :: dum
+  integer          :: dum
 
   logical          :: qexist
   character*24     :: file_name
