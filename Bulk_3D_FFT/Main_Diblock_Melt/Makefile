@@ -28,7 +28,7 @@ LDFLAGS = -static
 
 all: 
 
-main_diblock_melt: $(OBJS) main_diblock_melt.f90
+main_diblock_melt: $(OBJS) main_diblock.f90
 	$(F90) -I$(INCLUDE) $(F90FLAGS) -c $@.f90
 	$(F90) -I$(INCLUDE) $(LDFLAGS) -L/usr/lib:/usr/local/lib $(OBJS) $@.o $(LIBS) -o $@.exe
 
