@@ -333,7 +333,7 @@ contains
 
     call Calculate_Expfield(field,expfield)
     do i = 1,polymer_types
-      call Propagate_Homopolymer(polymer(i),expfield(:,:,:,polymer(i)%monomer_type))
+      call Propagate_Homopolymer(polymer(i),expfield)
     end do
  
     density = 0.0d0
