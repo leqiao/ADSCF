@@ -50,7 +50,7 @@ program main_blend
   double precision, dimension(polymer_types) :: number_of_chains
   double precision, dimension(polymer_types) :: chain_length
 
-  ! double precision    ::  energy, interaction_energy
+  ! double precision    ::  interaction_energy
   double precision    ::  energy
 
   integer             ::  number_of_timesteps ! number of timesteps
