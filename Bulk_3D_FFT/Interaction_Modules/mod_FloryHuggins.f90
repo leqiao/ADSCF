@@ -161,37 +161,4 @@ contains
 !
 !cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !
-!          CALCULATE CONJUGATE FIELD WITH WALL-INTERACTION
-!
-!cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-  subroutine Calculate_Mean_Ext_Fields(density,field)
-!
-    double precision, dimension(gridx,gridy,gridz,components), intent(in) :: density
-    double precision, dimension(gridx,gridy,gridz,components), intent(out):: field
-!
-    double precision, dimension(gridx,gridy,gridz,components) :: volume_fraction
-    double precision, dimension(gridx,gridy,gridz)            :: total_volume_fraction
-    integer   :: component, component2
-!
-    do component = 1,components
-      volume_fraction(:,:,:,component) = density(:,:,:,component)*monomer_volume(component) 
-    end do
-!
-    total_volume_fraction = sum(volume_fraction,dim=4)
-!
-    do component = 1,components
-!
-      field(:,:,:,component) = kappa*(total_volume_fraction-1)
-      do component2 = 1, components
-        field(:,:,:,component) = field(:,:,:,component) &
-          + chi(component,component2)*volume_fraction(:,:,:,component2)
-      end do
-      field(:,:,:,component) = field(:,:,:,component) * monomer_volume(component)
-    end do
-
-  end subroutine Calculate_Mean_Ext_Fields
-!
-!
-!cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-!
 end module Interactions_FloryHuggins
