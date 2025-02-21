@@ -37,6 +37,9 @@ subroutine Propagate_Step(prop,field)
         az(z) = -ds * 1.d0/dz(z)/(dz(z)+dz(z+1))
         cz(z) = -ds * 1.d0/dz(z+1)/(dz(z)+dz(z+1))
         bz(z)=  ds * (dz(z)+dz(z+1))/dz(z)/dz(z+1)/(dz(z)+dz(z+1)) ! Note dz(0) is not defined, here we approximate h(0)=h(1)
+        ! az(z) = -ds * 1.d0/dz(z)/dz(z)
+        ! cz(z) = -ds * 1.d0/dz(z)/dz(z)
+        ! bz(z)=  ds * 1.d0/dz(z)/dz(z) ! Note dz(0) is not defined, here we approximate h(0)=h(1)
     end do
 
 
@@ -90,24 +93,20 @@ end do
      double precision, dimension(N) :: bb, u, y, q
      integer :: i
      double precision  :: fact, gamma
-     if (N <3) then
-         x=r(1)/(b(1)+a(1)+c(1))
-     else
-         gamma     = -b(1)   ! gamma can be arbit; -b1 is recommended, concustruct Matrix B with bb at diaggonals
-         bb(1)     =  b(1) - gamma
-         bb(N)     =  b(N) - a(1)*c(N)/gamma
-         bb(2:N-1) =  b(2:N-1)
-         call tridiag(a, bb, c, r, y, N)          ! Solve By = r
+     gamma     = -b(1)   ! gamma can be arbit; -b1 is recommended, concustruct Matrix B with bb at diaggonals
+     bb(1)     =  b(1) - gamma
+     bb(N)     =  b(N) - a(1)*c(N)/gamma
+     bb(2:N-1) =  b(2:N-1)
+     call tridiag(a, bb, c, r, y, N)          ! Solve By = r
 
-         u(1)     = gamma                      ! Set up vector u
-         u(N)     = c(N)   !a(1)
-         u(2:N-1) = 0.d0
-         call tridiag(a, bb, c, u, q, N)           ! Solve Bq = u
+     u(1)     = gamma                      ! Set up vector u
+     u(N)     = c(N)   !a(1)
+     u(2:N-1) = 0.d0
+     call tridiag(a, bb, c, u, q, N)           ! Solve Bq = u
 ! Form v.x/(1 + v.z)
 !
-         fact = (y(1) + a(1)*y(N)/gamma)/(1.0 + q(1) + a(1)*q(N)/gamma)
-         x    = y - fact*q   ! get solution vector z
-     end if
+     fact = (y(1) + a(1)*y(N)/gamma)/(1.0 + q(1) + a(1)*q(N)/gamma)
+     x    = y - fact*q   ! get solution vector z
 !
    end subroutine cyclicTriDiag
 !

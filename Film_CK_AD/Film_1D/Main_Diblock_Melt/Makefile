@@ -24,7 +24,6 @@ F90 = gfortran
 F90FLAGS =-O3 -pipe -fomit-frame-pointer 
 LDFLAGS =
 
-all: 
 
 main_diblock_melt: $(OBJS) main_diblock_melt.f90
 	$(F90) -I$(INCLUDE) $(F90FLAGS) -c $@.f90
