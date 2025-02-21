@@ -23,7 +23,6 @@ module Interactions_FloryHuggins
 !
   public :: Initialize_Interactions
   public :: Calculate_Mean_Fields
-  public :: Calculate_Mean_Ext_Fields
   public :: Interaction_Energy
   public :: Check_Volume_Fraction
 !
@@ -62,6 +61,8 @@ contains
       print*, 'Error', io_error, ' while trying to open', file_name 
     end if
 !
+    close(unit=20)
+!
   end subroutine Initialize_Interactions
 !
 !cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
@@ -91,7 +92,6 @@ contains
           * dvol*sum(volume_fraction(:,:,:,component)*volume_fraction(:,:,:,component2))
       end do
     end do
-     print*, 'IE=', interaction_energy
  
   end function Interaction_Energy
 !
@@ -158,39 +158,6 @@ contains
     end if
 !
   end subroutine Check_Volume_Fraction
-!
-!cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-!
-!          CALCULATE CONJUGATE FIELD WITH WALL-INTERACTION
-!
-!cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-  subroutine Calculate_Mean_Ext_Fields(density,field)
-!
-    double precision, dimension(gridx,gridy,gridz,components), intent(in) :: density
-    double precision, dimension(gridx,gridy,gridz,components), intent(out):: field
-!
-    double precision, dimension(gridx,gridy,gridz,components) :: volume_fraction
-    double precision, dimension(gridx,gridy,gridz)            :: total_volume_fraction
-    integer   :: component, component2
-!
-    do component = 1,components
-      volume_fraction(:,:,:,component) = density(:,:,:,component)*monomer_volume(component) 
-    end do
-!
-    total_volume_fraction = sum(volume_fraction,dim=4)
-!
-    do component = 1,components
-!
-      field(:,:,:,component) = kappa*(total_volume_fraction-1)
-      do component2 = 1, components
-        field(:,:,:,component) = field(:,:,:,component) &
-          + chi(component,component2)*volume_fraction(:,:,:,component2)
-      end do
-      field(:,:,:,component) = field(:,:,:,component) * monomer_volume(component)
-    end do
-
-  end subroutine Calculate_Mean_Ext_Fields
-!
 !
 !cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !

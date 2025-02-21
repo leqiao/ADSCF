@@ -50,7 +50,7 @@ program main_blend
   double precision, dimension(polymer_types) :: number_of_chains
   double precision, dimension(polymer_types) :: chain_length
 
-  ! double precision    ::  energy, interaction_energy
+  ! double precision    ::  interaction_energy
   double precision    ::  energy
 
   integer             ::  number_of_timesteps ! number of timesteps
@@ -333,7 +333,7 @@ contains
 
     call Calculate_Expfield(field,expfield)
     do i = 1,polymer_types
-      call Propagate_Homopolymer(polymer(i),expfield(:,:,:,polymer(i)%monomer_type))
+      call Propagate_Homopolymer(polymer(i),expfield)
     end do
  
     density = 0.0d0
