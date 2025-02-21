@@ -13,7 +13,7 @@ module Global
   double precision, parameter :: LambdaA = 50.0d0 ! choose 0 to turn surface interaction off
   double precision, parameter :: LambdaB = 50.0d0
   integer, parameter          :: monomer_types=2
-  integer,parameter           :: gridx=1, gridy=1, gridz=300
+  integer,parameter           :: gridx=1, gridy=1, gridz=500
   integer                     :: int_scheme, mesh_type
   double precision            :: sizex, sizey, sizez, volume, ds
   double precision, dimension(0:gridz)  :: dz, zr !discretization
