@@ -14,9 +14,10 @@ ADSCF is an open-source code package provided free of charge: you can redistribu
 ## Cite us 
 If you use ADSCF or a modified version based on ADSCF to publish scientific papers, please kindly cite our paper and acknowledge the usage of our code.  
 
-Qiao, L.; Giannakou, M.;Schmid, F. An efficient and accurate SCFT algorithm for Block copolymer
+Qiao, L.; Giannakou, M.; Schmid, F. An efficient and accurate SCFT algorithm for Block copolymer
 films and brushs using adaptive discretizations. Polymers 2024, 16(9), 1228; https://doi.org/10.3390/polym16091228
 
+Qiao, L.; Vega, D. A.; Schmid, F. Stability and Elasticity of Ultrathin Sphere-Patterned Block Copolymer Films. Macromolecules, 57 (9), 4629-4634 (2024)
 
 
 # Files and directories
