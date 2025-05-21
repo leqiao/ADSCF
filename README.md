@@ -1,5 +1,27 @@
-# ADSCF
-ADSCF is a Self-Consistent Field code package designed for calculating the equilibrium properties of block copolymer materials, encompassing block copolymers in melt/solution and grafted polymer brushes in 1-3D. Developed using Fortran90, the code utilizes a pseudo-spectral method based on Fast Fourier transformation (FFT) for bulk calculations with periodic boundary conditions, and also provides the possibility to perform dynamic SCF calculations using chain dynamics, external potential dynamics, or a prescribed mobility function. Additionally, real-space methods, specifically the Finite Difference method (Crank–Nicolson), are employed for polymer systems with sharp interfaces, such as those found in thin films and end-grafted polymers. Notably, we implement an adaptive scheme for spatial and contour discretization in thin film and brush calculations to minimize numerical errors. For further details, please refer to our publication.
+# Adaptive Mesh Self-Consistent Field (ADSCF) Theory Code Package 
+ADSCF is a Fortran90-based code package implementing Self-Consistent Field (SCF) theory on adaptive spatial meshes for the efficient and accurate modeling of inhomogeneous polymer systems.
+
+This package is designed for simulations of block copolymer materials, including:
++ Block copolymers in melt or solution
++ End-grafted polymer brushes
++ Thin films and confined systems
+across 1D, 2D, and 3D geometries.
+
+### Key Features:
++ Pseudo-spectral method (based on Fast Fourier Transforms) for bulk systems with periodic boundary conditions
++ Finite difference methods (Crank–Nicolson scheme) for real-space simulations with non-periodic boundary conditions
++ Adaptive mesh and contour discretization for thin films and polymer brushes to reduce numerical errors and enhance resolution where needed
+
+This code provides a flexible and efficient framework for simulating complex morphologies in polymeric systems.
+
+For implementation details, numerical schemes, and example results, please refer to our associated publication:
+
+Qiao, L.; Giannakou, M.; Schmid, F. An efficient and accurate SCFT algorithm for Block copolymer
+films and brushs using adaptive discretizations. Polymers 2024, 16(9), 1228; https://doi.org/10.3390/polym16091228
+
+Qiao, L.; Vega, D. A.; Schmid, F. Stability and Elasticity of Ultrathin Sphere-Patterned Block Copolymer Films. Macromolecules, 57 (9), 4629-4634 (2024)
+
+If you use ADSCF or a modified version based on ADSCF to publish scientific papers, please kindly cite our paper and acknowledge the usage of our code.  
 
 # License 
 
@@ -11,13 +33,6 @@ Johannes Gutenberg-Universität Mainz, Institute of Physics, Schmid group
 
 ADSCF is an open-source code package provided free of charge: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation. The GNU General Public License is available at <https://www.gnu.org/licenses/>.
 
-## Cite us 
-If you use ADSCF or a modified version based on ADSCF to publish scientific papers, please kindly cite our paper and acknowledge the usage of our code.  
-
-Qiao, L.; Giannakou, M.; Schmid, F. An efficient and accurate SCFT algorithm for Block copolymer
-films and brushs using adaptive discretizations. Polymers 2024, 16(9), 1228; https://doi.org/10.3390/polym16091228
-
-Qiao, L.; Vega, D. A.; Schmid, F. Stability and Elasticity of Ultrathin Sphere-Patterned Block Copolymer Films. Macromolecules, 57 (9), 4629-4634 (2024)
 
 
 # Files and directories
