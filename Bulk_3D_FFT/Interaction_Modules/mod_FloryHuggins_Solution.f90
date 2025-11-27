@@ -52,7 +52,7 @@ contains
       read(20,*) kappa
       read(20,*)
       do component = 0, components
-        do component2 = component+1, components
+        do component2 = component, components
           read(20,*) chi(component,component2)
           chi(component2,component) = chi(component,component2)
         end do
