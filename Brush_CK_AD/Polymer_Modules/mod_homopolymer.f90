@@ -50,13 +50,13 @@ contains
    function gaus(z) result(otpt)
     
     double precision, intent (in)   :: z   
-    double precision                :: sig,aver,otpt  
+    double precision                :: sig,cut_off,otpt  
     
-    aver=gra_pt
-    sig=aver/5.0d0
+    cut_off=gra_pt
+    sig=cut_off/5.0d0
    
-    if ( (abs(z-aver) .lt. 5.0d0*sig) .and. (z .ge. 1) ) then
-        otpt=exp(-(z-aver)**2.0d0/(2.d0*sig**2.0d0)) !Normalization not needed
+    if ( (abs(z-gra_pt) .lt. cut_off) ) then
+        otpt=exp(-(z-gra_pt)**2.0d0/(2.d0*sig**2.0d0)) !Normalization not needed
     else
         otpt=0.0d0
     end if 
