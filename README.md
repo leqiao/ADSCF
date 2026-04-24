@@ -1,41 +1,64 @@
-# Adaptive Mesh Self-Consistent Field (ADSCF) Theory Code Package 
-ADSCF is a Fortran90-based code package implementing Self-Consistent Field (SCF) theory on adaptive spatial meshes for the efficient and accurate modeling of inhomogeneous polymer systems.
+# ADSCF — Adaptive Mesh Self-Consistent Field Theory
 
-This package is designed for simulations of block copolymer materials, including:
-+ Block copolymers in melt or solution
-+ End-grafted polymer brushes
-+ Thin films and confined systems
-across 1D, 2D, and 3D geometries.
+ADSCF is a Fortran 90 code package implementing Self-Consistent Field (SCF) theory on adaptive spatial meshes for efficient and accurate modeling of inhomogeneous polymer systems.
 
-### Key Features:
-+ Pseudo-spectral method (based on Fast Fourier Transforms) for bulk systems with periodic boundary conditions
-+ Finite difference methods (Crank–Nicolson scheme) for real-space simulations with non-periodic boundary conditions
-+ Adaptive mesh and contour discretization for thin films and polymer brushes to reduce numerical errors and enhance resolution where needed
+## Overview
 
-This code provides a flexible and efficient framework for simulating complex morphologies in polymeric systems.
+This package supports simulations of:
+- Block copolymers in melt or solution
+- End-grafted polymer brushes
+- Thin films and confined polymer systems
 
-For implementation details, numerical schemes, and example results, please refer to our associated publication:
+across **1D, 2D, and 3D** geometries.
 
-Qiao, L.; Giannakou, M.; Schmid, F. An efficient and accurate SCFT algorithm for Block copolymer
-films and brushs using adaptive discretizations. Polymers 2024, 16(9), 1228; https://doi.org/10.3390/polym16091228
+## Key Features
 
-Qiao, L.; Vega, D. A.; Schmid, F. Stability and Elasticity of Ultrathin Sphere-Patterned Block Copolymer Films. Macromolecules, 57 (9), 4629-4634 (2024)
+- **Pseudo-spectral method** (FFT-based) for bulk systems with periodic boundary conditions
+- **Finite difference method** (Crank–Nicolson scheme) for real-space simulations with non-periodic boundary conditions
+- **Adaptive mesh and contour discretization** for thin films and polymer brushes to reduce numerical errors and enhance spatial resolution where needed
+- Supports **SCF and DDFT** (Dynamic Density Functional Theory) simulations
 
-If you use ADSCF or a modified version based on ADSCF to publish scientific papers, please kindly cite our paper and acknowledge the usage of our code.  
+## Dependencies
 
-# License 
+Before building, ensure the following are installed:
 
-Copyright (C) 2024  
-Le Qiao (<le.qiao@uni-mainz.de>)  
-Marios Giannakou (<mgiannak@uni-mainz.de>)  
-Friederike Schmid (<friederike.schmid@uni-mainz.de>)  
-Johannes Gutenberg-Universität Mainz, Institute of Physics, Schmid group  
+| Dependency | Version | Notes |
+|---|---|---|
+| Fortran compiler | gfortran ≥ 9.0 or ifort ≥ 19 | `gfortran` recommended |
+| [FFTW3](http://www.fftw.org/) | ≥ 3.3 | Required for FFT-based bulk codes |
+| GNU Make | ≥ 4.0 | For building with provided Makefiles |
+| MPI (optional) | OpenMPI or MPICH | Required only if parallel builds are needed |
 
-ADSCF is an open-source code package provided free of charge: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation. The GNU General Public License is available at <https://www.gnu.org/licenses/>.
+Install FFTW3 on Linux:
+```bash
+sudo apt-get install libfftw3-dev   # Debian/Ubuntu
+sudo dnf install fftw-devel         # Fedora/RHEL
+```
+
+On macOS (Homebrew):
+```bash
+brew install fftw
+```
+
+## Installation & Usage
+
+Clone the repository:
+```bash
+git clone https://github.com/leqiao/ADSCF.git
+cd ADSCF
+```
+
+Build and run using the 3D bulk diblock copolymer code as an example:
+```bash
+cd Bulk_3D_FFT/Main_Diblock_Melt
+make main_diblock_melt
+./main_diblock_melt.exe
+```
+
+Repeat the same `make <main_name>` + `./<main_name>.exe` pattern for any other `Main_*` directory.
 
 
-
-# Files and directories
+## Repository Structure
 ### The structure of the code package:
 Using the 3D code of polymer in bulk as an example:
 ```bash
@@ -74,12 +97,21 @@ Using the 3D code of polymer in bulk as an example:
 │       ├── mod_solvent.f90
 │       └── mod_triblock.f90
 │       └── mod_multiblock.f90
+├── Film_CK_AD/                        # Block copolymer thin films (Crank–Nicolson, adaptive mesh)
+│   ├── 1D/                            # 1D film geometry
+│   └── 3D/                            # 3D film geometry
+└── Brush_CK_AD/                       # Polymer brush (Crank–Nicolson, adaptive spatial + contour)
 ```
-### Examples using adaptive schemes:
-+ Film_CK_AD: Block copolymer confined in a thin film solved by Crank–Nicolson method using adaptive spatial discretization. The examples are given in 1D and 3D. 
 
-+ Brush_CK_AD: homopolymer brush solved by Crank–Nicolson method using adaptive spatial and contour discretization.   
 
+## Examples
+### Adaptive-Mesh Examples
+
+| Directory | Description |
+|---|---|
+| `Film_CK_AD/1D` | Diblock copolymer film in 1D, Crank–Nicolson + adaptive spatial mesh |
+| `Film_CK_AD/3D` | Same, extended to 3D geometry |
+| `Brush_CK_AD` | Homopolymer brush with adaptive spatial and contour discretization |
 # Making and running job
 Using the 3D code of polymer in bulk as an example: 
 ```bash
@@ -87,3 +119,20 @@ cd Main_Diblock_Melt
 make main_diblock_melt  
 ./main_diblock_melt.exe  
 ```
+## Citation
+If you use ADSCF or a derivative in published work, please cite:
+
+> Qiao, L.; Giannakou, M.; Schmid, F. An efficient and accurate SCFT algorithm for block copolymer films and brushes using adaptive discretizations. *Polymers* **2024**, *16*(9), 1228. https://doi.org/10.3390/polym16091228
+
+> Qiao, L.; Vega, D. A.; Schmid, F. Stability and elasticity of ultrathin sphere-patterned block copolymer films. *Macromolecules* **2024**, *57*(9), 4629–4634. https://doi.org/10.1021/acs.macromol.4c00345
+
+## License
+
+Copyright © 2024  
+Le Qiao (<le.qiao@uni-mainz.de>)  
+Marios Giannakou (<mgiannak@uni-mainz.de>)  
+Friederike Schmid (<friederike.schmid@uni-mainz.de>)  
+Johannes Gutenberg-Universität Mainz, Institute of Physics, Schmid group
+
+ADSCF is free software: you can redistribute it and/or modify it under the terms of the **GNU General Public License** as published by the Free Software Foundation (version 3 or later). See [`LICENSE`](LICENSE) for the full text, or visit <https://www.gnu.org/licenses/>.
+
